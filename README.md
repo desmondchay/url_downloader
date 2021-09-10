@@ -13,7 +13,7 @@
 ##### For `config/sftp_urls.csv`
 |  host           |  username    |  password |  port |  path                    |
 | :---------------| :------------| :---------| :-----| :------------------------|
-|  test.rebex.net |  "demo"      | s password | 22    | "/pub/example/readme.txt"|
+|  test.rebex.net |  "demo"      | password  | 22    | "/pub/example/readme.txt"|
 
 ## Setup with docker
 1. Navigate to root folder
