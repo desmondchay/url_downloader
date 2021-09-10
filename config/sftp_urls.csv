@@ -1,0 +1,2 @@
+host,username,password,port,path
+test.rebex.net,"demo",password,22,"/pub/example/readme.txt"
