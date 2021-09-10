@@ -7,4 +7,4 @@ COPY . /app/
 # Install dependencies
 RUN pip3 install -r requirements.txt
 
-CMD [ "python", "./app/main.py" ]
+CMD [ "python", "/app/src/main.py" ]
