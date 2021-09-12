@@ -6,7 +6,19 @@ path = Path(__file__).resolve()
 default_save_dir = path.parent.parent.parent.absolute() / "files"
 logger = logging.getLogger(__name__)
 
-def download_file(url, dir_to_save = default_save_dir):
+"""
+Function to download a single file based on http protocol
+
+Parameters:
+    url (str): 
+        HTTP URL to download from
+    dir_to_save (str):
+        Path of the directory to save the downloaded files
+
+    Returns:
+        bool: Boolean to indicate whether the file has been successfully downloaded
+"""
+def download_file(url: str, dir_to_save: str = default_save_dir) -> bool:
     current_disk_space = get_current_disk_space()
     try:
         response = requests.head(url)

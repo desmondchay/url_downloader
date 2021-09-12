@@ -6,7 +6,25 @@ path = Path(__file__).resolve()
 default_save_dir = path.parent.parent.parent.absolute() / "files"
 logger = logging.getLogger(__name__)
 
-def download_file(host, username, password, port, download_path, dir_to_save = default_save_dir):
+"""
+Function to download a single file based on sftp protocol
+
+Parameters:
+    host (str):
+        Host of remote server to fetch the file from
+    username (str):
+        Username credentials of remote server to fetch the file from
+    port (str):
+        Port that is open on remote server to fetch the file from
+    download_path (str):
+        Path on remote server to fetch the file from
+    dir_to_save (str):
+        Path of the directory to save the downloaded files
+
+    Returns:
+        bool: Boolean to indicate whether the file has been successfully downloaded
+"""
+def download_file(host: str, username: str, password: str, port: str, download_path: str, dir_to_save: str = default_save_dir) -> bool:
     transp = paramiko.Transport((host,int(port)))
     transp.connect(username=username,password=password)
     client = paramiko.SFTPClient.from_transport(transp)
