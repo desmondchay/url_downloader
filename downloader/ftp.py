@@ -1,7 +1,9 @@
-from .util import get_current_disk_space, unique_file, check_file_size, convert_size
 from contextlib import closing
-import urllib.request as ftprequest, urllib.error as ftperror, shutil, logging
 from pathlib import Path
+import urllib.request as ftprequest, urllib.error as ftperror, shutil, logging
+
+from .util import get_current_disk_space, unique_file, check_file_size, convert_size
+
 path = Path(__file__).resolve()
 default_save_dir = path.parent.parent.absolute() / "files"
 logger = logging.getLogger(__name__)

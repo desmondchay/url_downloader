@@ -1,6 +1,10 @@
-from .util import get_current_disk_space, unique_file, check_file_size, convert_size
-import paramiko, shutil, logging
 from pathlib import Path
+import shutil, logging
+
+import paramiko
+
+from .util import get_current_disk_space, unique_file, check_file_size, convert_size
+
 path = Path(__file__).resolve()
 default_save_dir = path.parent.parent.absolute() / "files"
 logger = logging.getLogger(__name__)

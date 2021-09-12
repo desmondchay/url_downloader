@@ -1,6 +1,7 @@
-import shutil, math, logging, csv
 from pathlib import Path
 from itertools import count
+import shutil, math, logging, csv
+
 logger = logging.getLogger(__name__)
 
 """

@@ -1,7 +1,6 @@
-from downloader.ftp import download_file
 import unittest
 from pathlib import Path
-# from downloader import http, ftp, sftp
+
 from downloader.http import download_file as download_http_file
 from downloader.ftp import download_file as download_ftp_file
 from downloader.sftp import download_file as download_sftp_file

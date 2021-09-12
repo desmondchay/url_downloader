@@ -1,7 +1,8 @@
 from pathlib import Path
-import logging, concurrent.futures
-from .util import get_url_links
 from typing import Callable
+import logging, concurrent.futures
+
+from .util import get_url_links
 
 num_max_workers = 5
 root_path = Path(__file__).resolve().parent.parent.absolute()

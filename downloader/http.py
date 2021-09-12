@@ -1,7 +1,11 @@
-from .util import get_current_disk_space, unique_file, check_file_size, convert_size
 from contextlib import closing
-import requests, shutil, logging
 from pathlib import Path
+import shutil, logging
+
+import requests
+
+from .util import get_current_disk_space, unique_file, check_file_size, convert_size
+
 path = Path(__file__).resolve()
 default_save_dir = path.parent.parent.absolute() / "files"
 logger = logging.getLogger(__name__)
