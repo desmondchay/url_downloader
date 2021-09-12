@@ -22,9 +22,9 @@ def download_file(url: str, dir_to_save: str = default_save_dir) -> bool:
     current_disk_space = get_current_disk_space()
 
     try:
-        r = ftprequest.urlopen(url)
-        expected_file_size = int(r.info()['Content-Length'], 0)
-        logger.info(f"Size of {url}: {convert_size(expected_file_size)}")
+        with closing(ftprequest.urlopen(url)) as r:
+            expected_file_size = int(r.info()['Content-Length'], 0)
+            logger.info(f"Size of {url}: {convert_size(expected_file_size)}")
     except ftperror.HTTPError as e:
         logger.info(e.__dict__)
         raise e.__dict__

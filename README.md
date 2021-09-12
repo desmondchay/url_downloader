@@ -62,7 +62,10 @@ batch_download_urls(protocol_func = download_http_file, csv_file_path = "C:/User
 ```
 
 ## Run unit tests
-TBD
+```
+# run tests
+python -m unittest discover
+```
 
 ## External Python libraries used
 - requests (for http)
