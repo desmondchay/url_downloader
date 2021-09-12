@@ -1,9 +1,8 @@
-from util.util import get_current_disk_space, unique_file, check_file_size, convert_size
-from contextlib import closing
+from .util import get_current_disk_space, unique_file, check_file_size, convert_size
 import paramiko, shutil, logging
 from pathlib import Path
 path = Path(__file__).resolve()
-default_save_dir = path.parent.parent.parent.absolute() / "files"
+default_save_dir = path.parent.parent.absolute() / "files"
 logger = logging.getLogger(__name__)
 
 """
@@ -32,7 +31,7 @@ def download_file(host: str, username: str, password: str, port: str, download_p
     current_disk_space = get_current_disk_space()
     if current_disk_space >= expected_file_size:
         local_filename = download_path.split('/')[-1]
-        path_to_save = unique_file(dir_to_save / local_filename)
+        path_to_save = unique_file(Path(dir_to_save) / local_filename)
 
         logger.info(f"Saving {download_path} at {path_to_save}")
         try:

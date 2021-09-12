@@ -2,31 +2,32 @@
 ## URL Downloader
 ---
 
+## Setup without docker
+1. Navigate to root folder
+2. Install dependencies with `pip install -r requirements.txt`
+3. Run a python shell within the src directory and use the defined modules accordingly
+
 ## Setup with docker
 1. Navigate to root folder
 2. Build docker image with `docker build -t url_downloader .`
 3. Setup the urls you wish to retrieve as per instructions above
 4. Define a DIR_TO_SAVE_FILES where you wish to store the downloaded files
 5. Run docker container with `docker run -it --mount type=bind,source={DIR_TO_SAVE_FILES},target=/app/files --mount type=bind,source={DIR_TO_CHANGE_CONFIGS},target=/app/config url_downloader` python
-
-## Setup without docker
-1. Navigate to root folder
-2. Install dependencies with `pip install -r requirements.txt`
-3. Run a python shell within the src directory and use the defined modules accordingly
+6. Note that usage will differ since the file system within the Docker container is structured differently
 
 ### Usage
 #### Downloading single url with defined functions for different protocols
 ```
 # downloading single url example
-from client.http import download_file as download_http_file
-from client.ftp import download_file as download_ftp_file
-from client.sftp import download_file as download_sftp_file
+from downloader.http import download_file as download_http_file
+from downloader.ftp import download_file as download_ftp_file
+from downloader.sftp import download_file as download_sftp_file
 download_http_file("http://speedtest.tele2.net/1MB.zip")
 download_ftp_file("ftp://speedtest.tele2.net/1KB.zip")
 download_sftp_file("test.rebex.net","demo","password","22","/pub/example/readme.txt")
 
 # downloading single url with specified save path
-download_http_file("http://speedtest.tele2.net/1MB.zip", "PATH")
+download_http_file("http://speedtest.tele2.net/1MB.zip", "C:/Users/desmond/Desktop/downloaded")
 ```
 
 ####  Batch downloading a list of urls with defined functions for different protocols
@@ -48,14 +49,21 @@ download_http_file("http://speedtest.tele2.net/1MB.zip", "PATH")
 
 ```
 # downloading in batch example
-from main import batch_download_urls
-from client.http import download_file as download_http_file
+from downloader.batch_download import batch_download_urls
+from downloader.http import download_file as download_http_file
 
-batch_download_urls(download_http_file, "http_urls.csv")
+# download in batch with specified path to read the urls to download
+batch_download_urls(protocol_func = download_http_file, csv_file_path= "C:/Users/desmond/Desktop/urls/urls.csv")
+# download in batch with specified path to read the urls to download within docker container
+batch_download_urls(protocol_func = download_http_file, csv_file_path= "app/downloader/configs/your_csv_name.csv")
 
 # downloading in batch with specified save path
-batch_download_urls(download_http_file, "http_urls.csv", "PATH_to_save")
+batch_download_urls(protocol_func = download_http_file, csv_file_path = "C:/Users/desmond/Desktop/urls/urls.csv", "C:/Users/desmond/Desktop/downloaded")
 ```
 
 ## Run unit tests
 TBD
+
+## External Python libraries used
+- requests (for http)
+- paramiko (for sftp)

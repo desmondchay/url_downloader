@@ -1,13 +1,10 @@
 from pathlib import Path
 import logging, concurrent.futures
-from util.util import get_url_links
+from .util import get_url_links
 from typing import Callable
 
 num_max_workers = 5
-path = Path(__file__).resolve()
-root_path = path.parent.parent.absolute()
-
-urls_to_download_dir = root_path / "config"
+root_path = Path(__file__).resolve().parent.parent.absolute()
 default_save_dir = root_path / "files"
 
 log_path = root_path / "log.log"
@@ -25,7 +22,7 @@ Parameters:
         Path of the directory to save the downloaded files
 """
 def batch_download_urls(protocol_func: Callable, csv_file_path: str, dir_to_save: str = default_save_dir) -> None:
-    urls_to_download = get_url_links(urls_to_download_dir / csv_file_path)
+    urls_to_download = get_url_links(csv_file_path)
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_max_workers) as executor:
         if isinstance(urls_to_download[0], dict):
             future_to_url = {executor.submit(protocol_func, url["host"], url["username"], url["password"], url["port"], url["path"], dir_to_save) : url for url in urls_to_download}

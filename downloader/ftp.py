@@ -1,9 +1,9 @@
-from util.util import get_current_disk_space, unique_file, check_file_size, convert_size
+from .util import get_current_disk_space, unique_file, check_file_size, convert_size
 from contextlib import closing
 import urllib.request as ftprequest, urllib.error as ftperror, shutil, logging
 from pathlib import Path
 path = Path(__file__).resolve()
-default_save_dir = path.parent.parent.parent.absolute() / "files"
+default_save_dir = path.parent.parent.absolute() / "files"
 logger = logging.getLogger(__name__)
 
 """
@@ -35,7 +35,7 @@ def download_file(url: str, dir_to_save: str = default_save_dir) -> bool:
     if current_disk_space >= expected_file_size:
         # Open the FTP connection
         local_filename = url.split('/')[-1]
-        path_to_save = unique_file(dir_to_save / local_filename)
+        path_to_save = unique_file(Path(dir_to_save) / local_filename)
 
         logger.info(f"Saving {url} at {path_to_save}")
         with closing(ftprequest.urlopen(url)) as r:
