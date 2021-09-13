@@ -1,6 +1,10 @@
 ---
 ## URL Downloader
 ---
+## Project details
+URL Downloader is a python module/script that allows users to download files from multiple protocols.
+Users may download files over the http, https, ftp, sftp protocols either using functions defined in the module or
+using the python script defined in `main.py`
 
 ## Setup without docker
 1. Navigate to root folder
@@ -12,7 +16,7 @@
 2. Build docker image with `docker build -t url_downloader .`
 3. Setup the urls you wish to retrieve as per instructions above
 4. Define a DIR_TO_SAVE_FILES where you wish to store the downloaded files
-5. Run docker container with `docker run -it --mount type=bind,source={DIR_TO_SAVE_FILES},target=/app/files --mount type=bind,source={DIR_TO_CHANGE_CONFIGS},target=/app/config url_downloader` python
+5. Run docker container with `docker run -it --mount type=bind,source={DIR_TO_SAVE_FILES},target=/app/files --mount type=bind,source={DIR_FOR_BATCH_DOWNLOAD_REF},target=/app/config url_downloader` python
 6. Note that usage will differ since the file system within the Docker container is structured differently
 
 ### Usage
@@ -53,13 +57,19 @@ from downloader.batch_download import batch_download_urls
 from downloader.http import download_file as download_http_file
 
 # download in batch with specified path to read the urls to download
-batch_download_urls(protocol_func = download_http_file, csv_file_path= "C:/Users/desmond/Desktop/urls/urls.csv")
+batch_download_urls(protocol_func = download_http_file, csv_file_path= "C:/Users/desmond/Desktop/agoda/config/http_urls.csv")
 # download in batch with specified path to read the urls to download within docker container
 batch_download_urls(protocol_func = download_http_file, csv_file_path= "app/downloader/configs/your_csv_name.csv")
 
 # downloading in batch with specified save path
 batch_download_urls(protocol_func = download_http_file, csv_file_path = "C:/Users/desmond/Desktop/urls/urls.csv", "C:/Users/desmond/Desktop/downloaded")
 ```
+
+#### Using a real-time CLI for files with http/https protocol 
+1. Run the script with `python downloader/main.py` while in the root folder
+2. Enter any http/https protocol supported url
+3. The script will update on the progress of any submitted downloads after each input
+4. When specifying exit, the script will also check on any ongoing downloads and allow the user to handle them
 
 ## Run unit tests
 ```

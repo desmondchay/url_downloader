@@ -104,4 +104,5 @@ def check_file_size(expected_file_size: int, download_path: str, saved_path: str
                 Path(saved_path).unlink(missing_ok=True)
                 return False
         else:
-            logger.info(f"Unable to validate if {saved_path.split('/'[-1])} is downloaded successfully, please do a manual check at {saved_path}")    
+            logger.info(f"Unable to validate if {saved_path.split('/'[-1])} is downloaded successfully, please do a manual check at {saved_path}")
+            return True

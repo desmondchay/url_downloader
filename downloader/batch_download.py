@@ -7,10 +7,8 @@ from .util import get_url_links
 num_max_workers = 5
 root_path = Path(__file__).resolve().parent.parent.absolute()
 default_save_dir = root_path / "files"
+logger = logging.getLogger(__name__)
 
-log_path = root_path / "log.log"
-logging.basicConfig(filename= log_path, filemode = 'a', level=logging.INFO, format='%(asctime)s :: %(levelname)s :: %(message)s')
-    
 """
 Function to batch download a list of files with links defined in a csv, with a defined protocol function
 
