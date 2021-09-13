@@ -19,8 +19,8 @@ using the python script defined in `main.py`
 5. Run docker container with `docker run -it --mount type=bind,source={DIR_TO_SAVE_FILES},target=/app/files --mount type=bind,source={DIR_FOR_BATCH_DOWNLOAD_REF},target=/app/config url_downloader` python
 6. Note that usage will differ since the file system within the Docker container is structured differently
 
-### Usage
-#### Downloading single url with defined functions for different protocols
+## Usage
+### Downloading single url with defined functions for different protocols
 ```
 # downloading single url example
 from downloader.http import download_file as download_http_file
@@ -34,11 +34,11 @@ download_sftp_file("test.rebex.net","demo","password","22","/pub/example/readme.
 download_http_file("http://speedtest.tele2.net/1MB.zip", "C:/Users/desmond/Desktop/downloaded")
 ```
 
-####  Batch downloading a list of urls with defined functions for different protocols
+###  Batch downloading a list of urls with defined functions for different protocols
 1. Define urls that you wish to obtain in batch within the `config` directory
 2. An example format is as below:
 
-##### For `config/http_urls.csv` or `config/ftp_urls.csv`
+#### For `config/http_urls.csv` or `config/ftp_urls.csv`
 |  urls                               |
 | :-----------------------------------|
 |  http://google.com                  |
@@ -46,7 +46,7 @@ download_http_file("http://speedtest.tele2.net/1MB.zip", "C:/Users/desmond/Deskt
 |  http://speedtest.tele2.net/10MB.zip|
 |  http://info.cern.ch/               |
 
-##### For `config/sftp_urls.csv`
+#### For `config/sftp_urls.csv`
 |  host           |  username    |  password |  port |  path                    |
 | :---------------| :------------| :---------| :-----| :------------------------|
 |  test.rebex.net |  "demo"      | password  | 22    | "/pub/example/readme.txt"|
@@ -65,7 +65,7 @@ batch_download_urls(protocol_func = download_http_file, csv_file_path= "app/down
 batch_download_urls(protocol_func = download_http_file, csv_file_path = "C:/Users/desmond/Desktop/urls/urls.csv", "C:/Users/desmond/Desktop/downloaded")
 ```
 
-#### Using a real-time CLI for files with http/https protocol 
+### Using a real-time CLI for files with http/https protocol 
 1. Run the script with `python downloader/main.py` while in the root folder
 2. Enter any http/https protocol supported url
 3. The script will update on the progress of any submitted downloads after each input
