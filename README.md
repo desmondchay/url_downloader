@@ -62,7 +62,7 @@ batch_download_urls(protocol_func = download_http_file, csv_file_path= "C:/Users
 batch_download_urls(protocol_func = download_http_file, csv_file_path= "app/downloader/configs/your_csv_name.csv")
 
 # downloading in batch with specified save path
-batch_download_urls(protocol_func = download_http_file, csv_file_path = "C:/Users/desmond/Desktop/urls/urls.csv", "C:/Users/desmond/Desktop/downloaded")
+batch_download_urls(protocol_func = download_http_file, csv_file_path = "C:/Users/desmond/Desktop/urls/urls.csv", dir_to_save = "C:/Users/desmond/Desktop/downloaded")
 ```
 
 ### Using a real-time CLI for files with http/https protocol 
